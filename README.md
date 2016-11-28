@@ -135,6 +135,52 @@ result
 
 
 
+<h2>数组</h2>
+数组种类：索引数组，关联数组
+
+<h3>php索引数组循环</h3>
+for循环
+```php
+<?php
+$fruit=array('苹果','香蕉','菠萝');
+for($i=0;$i<3;$i++){
+  echo $fruit[$i];
+}
+?>
+```
+foreach循环访问索引数组里的值
+```php
+<?php
+$fruit=array('苹果','香蕉','菠萝');
+foreach($fruit as $key=>$value){
+    echo $key.'：'.$value.'<br>';
+}
+
+?>
+```
+<h3>PHP数组之关联数组初始化</h3>
+
+关联数组是指数组的键是字符串的数组
+
+$fruit = array(
+
+    'apple'=>"苹果",
+
+    'banana'=>"香蕉",
+
+    'pineapple'=>"菠萝"
+
+); 
+```php
+<?php
+$fruit=array('apple'=>"苹果",'banana'=>"香蕉",'pineapple'=>"菠萝");
+foreach($fruit as $key=>$value){
+    echo '<br>键是：'.$key.'，对应的值是：'.$value;
+}
+?>
+```
+
+
 
 
 
