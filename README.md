@@ -1,4 +1,4 @@
-# PHP
+# PHP基础语法
 没想到，搞了半天，我还是要学php，QAQ
 
 <h3>php的八种数据类型</h3>
@@ -179,6 +179,126 @@ foreach($fruit as $key=>$value){
 }
 ?>
 ```
+
+<h3>php类class</h3>
+```php
+class Car {
+    //定义公共属性
+    public $name = '汽车';
+
+    //定义受保护的属性
+    protected $corlor = '白色';
+
+    //定义私有属性
+    private $price = '100000';
+}
+//受保护的继承后可以访问，私有的只能在该类中访问，不会被继承访问
+
+```
+<h3>PHP类和对象之构造函数和析构函数</h3>
+
+PHP5可以在类中使用__construct() 定义一个构造函数，
+
+具有构造函数的类，会在每次对象创建的时候调用该函数，因此常用来在对象创建的时候进行一些初始化工作。
+
+```php
+class Car {
+   function __construct() {
+       print "构造函数被调用\n";
+   }
+}
+$car = new Car(); //实例化的时候 会自动调用构造函数__construct，这里会输出一个字符串
+```
+```php
+//在子类中如果定义了__construct则不会调用父类的__construct，如果需要同时调用父类的构造函数，需要使用parent::__construct()显式的调用。
+
+class Car {
+   function __construct() {
+       print "父类构造函数被调用\n";
+   }
+}
+class Truck extends Car {
+   function __construct() {
+       print "子类构造函数被调用\n";
+       parent::__construct();
+   }
+}
+$car = new Truck();
+```
+PHP5支持析构函数，使用__destruct()  
+
+进行定义，析构函数指的是当某个对象的所有引用被删除，或者对象被显式的销毁时会执行的函数。
+
+```php
+class Car {
+   function __construct() {
+       print "构造函数被调用 \n";
+   }
+   function __destruct() {
+       print "析构函数被调用 \n";
+   }
+}
+$car = new Car(); //实例化时会调用构造函数
+echo '使用后，准备销毁car对象 \n';
+unset($car); //销毁时会调用析构函数
+```
+<h3>PHP类和对象之Static静态关键字</h3>
+
+静态属性与方法可以在不实例化类的情况下调用，直接使用类名::方法名的方式进行调用。
+
+静态属性不允许对象使用->操作符调用。
+
+```php
+
+class Car {
+    private static $speed = 10;
+    
+    public static function getSpeed() {
+        return self::$speed;
+    }
+}
+echo Car::getSpeed();  //调用静态方法
+
+```
+```php
+//静态方法中，$this伪变量不允许使用。可以使用self，parent，static在内部调用静态方法与属性。
+
+
+class Car {
+    private static $speed = 10;
+    
+    public static function getSpeed() {
+        return self::$speed;
+    }
+    
+    public static function speedUp() {
+        return self::$speed+=10;
+    }
+}
+class BigCar extends Car {
+    public static function start() {
+        parent::speedUp();
+    }
+}
+BigCar::start();
+echo BigCar::getSpeed();
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
